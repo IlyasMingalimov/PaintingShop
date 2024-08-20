@@ -1,8 +1,12 @@
 ﻿@page "/Login"
-@using Frontend.Blazor.Code;
-@using Frontend.Blazor.Models;
+
+@using Microsoft.AspNetCore.Mvc.Rendering;
+@using PaintingShop.AdminWeb.Models;
+@using PaintingShop.AdminWeb.Services;
+
 @inject LoginService LoginService
 @inject NavigationManager Navigation
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col col-lg-6">
@@ -37,14 +41,9 @@
     </div>
 </div>
 
- @code{
+@code{
     private readonly LoginModel _model = new();
     private bool _loginFailed;
-
-    protected override void OnInitialized()
-    {
-        Console.WriteLine("Hello");
-    }
 
     private async Task OnLoginAsync(EditContext editContext)
     {
@@ -59,7 +58,7 @@
         if (loginResult)
         {
             _loginFailed = false;
-            //Navigation.NavigateTo("/", true);
+            Navigation.NavigateTo("/", true);
         }
         else
         {

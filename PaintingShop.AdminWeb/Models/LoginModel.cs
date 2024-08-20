@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Frontend.Blazor.Models;
+namespace PaintingShop.AdminWeb.Models;
 
 public class LoginModel
 {
@@ -12,7 +12,6 @@ public class LoginModel
     [DataType(DataType.Password)]
     public string Password { get; set; }
 }
-
 
 public class UserRegisterInput : LoginModel
 {
