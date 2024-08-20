@@ -1,7 +1,7 @@
-﻿namespace PaintingShop.Storage;
+﻿namespace PaintingShop.Storage.Maps;
 
-public class PictureMap 
-{ 
+public class PictureMap
+{
     public uint Id { get; set; }
     public string Name { get; set; }
     public DateTime Date { get; set; }
