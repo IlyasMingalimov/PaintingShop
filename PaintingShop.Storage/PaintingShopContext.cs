@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PaintingShop.Storage.Maps;
 
 namespace PaintingShop.Storage;
 public class PaintingShopContext : DbContext

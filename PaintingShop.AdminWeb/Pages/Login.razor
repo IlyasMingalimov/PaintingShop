@@ -1,0 +1,59 @@
+﻿@page "/Login"
+
+@using Microsoft.AspNetCore.Mvc.Rendering;
+@using PaintingShop.AdminWeb.Models;
+@using PaintingShop.AdminWeb.Services;
+
+@inject LoginService LoginService
+@inject NavigationManager Navigation
+
+<EditForm Model="_model" OnSubmit="OnLoginAsync">
+	<DataAnnotationsValidator />
+	<div>
+		<div>
+			<input type="email" placeholder="username" @bind="_model.Email">
+			<label for="floatingInput">Email</label>
+		</div>
+		<div>
+			<input type="password" placeholder="Password" @bind="_model.Password">
+			<label for="floatingPassword">Password</label>
+		</div>
+		<div>
+			<ValidationSummary />
+		</div>
+		<div>
+			<button type="submit" disabled="@(context.Validate() is false)">
+				Login
+			</button>
+		</div>
+	</div>
+	<div hidden="@(_loginFailed is false)">
+		Login failed!
+	</div>
+</EditForm>
+
+@code {
+	private readonly LoginModel _model = new();
+	private bool _loginFailed;
+
+	private async Task OnLoginAsync(EditContext editContext)
+	{
+		if (editContext.Validate() is false)
+		{
+			_loginFailed = true;
+			return;
+		}
+
+		_loginFailed = false;
+		var loginResult = await LoginService.LoginAsync(_model);
+		if (loginResult)
+		{
+			_loginFailed = false;
+			Navigation.NavigateTo("/", true);
+		}
+		else
+		{
+			_loginFailed = true;
+		}
+	}
+}

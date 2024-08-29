@@ -1,0 +1,28 @@
+﻿@using System.Net.Http.Headers;
+@using static System.Net.WebRequestMethods;
+@inherits LayoutComponentBase
+
+<PageTitle>Painting Shop - Web Administrator</PageTitle>
+
+<div class="page">
+<CascadingAuthenticationState>
+    <AuthorizeView>
+        <Authorized>
+            <div class="page">
+                <div class="sidebar">
+                    <NavMenu />
+                </div>
+
+                <main>
+                    <article class="content px-4">
+                        @Body
+                    </article>
+                </main>
+            </div>
+        </Authorized>
+        <NotAuthorized>
+            <Login></Login>
+        </NotAuthorized>
+    </AuthorizeView>
+</CascadingAuthenticationState>
+</div>
